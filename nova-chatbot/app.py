@@ -17,12 +17,23 @@ st.set_page_config(
     page_title="Nova - Your Coding Buddy",
     page_icon="🐍",
     layout="wide",
-    initial_sidebar_state="expanded"
+    initial_sidebar_state="auto"  # Auto-collapse on mobile
 )
+
+# Mobile viewport meta tag for proper scaling
+st.markdown("""
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+""", unsafe_allow_html=True)
 
 # Custom CSS for better UI
 st.markdown("""
 <style>
+    /* Base Styles - Mobile First Approach */
+    * {
+        -webkit-tap-highlight-color: transparent;
+        -webkit-touch-callout: none;
+    }
+    
     /* Main Headers */
     .main-header {
         font-size: 2.8rem;
@@ -230,6 +241,148 @@ st.markdown("""
     @keyframes float {
         0%, 100% { transform: translateY(0px); }
         50% { transform: translateY(-5px); }
+    }
+    
+    /* Mobile Responsive Styles */
+    @media only screen and (max-width: 768px) {
+        /* Headers */
+        .main-header {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            padding: 0 1rem;
+        }
+        
+        .sub-header {
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            padding: 0 1rem;
+        }
+        
+        /* Chat Container */
+        .chat-container {
+            max-width: 100%;
+            padding: 0.5rem;
+        }
+        
+        /* Message Bubbles */
+        .message-bubble {
+            max-width: 85%;
+            padding: 0.85rem 1rem;
+            font-size: 0.95rem;
+        }
+        
+        .message-bubble.welcome {
+            max-width: 95%;
+            padding: 1.2rem;
+            font-size: 1rem;
+        }
+        
+        .message-bubble.welcome strong {
+            font-size: 1.1rem;
+        }
+        
+        /* Avatars */
+        .avatar {
+            width: 32px;
+            height: 32px;
+            font-size: 1.1rem;
+        }
+        
+        .avatar.user {
+            margin-left: 8px;
+        }
+        
+        .avatar.assistant {
+            margin-right: 8px;
+        }
+        
+        /* Watermark */
+        .watermark {
+            bottom: 5px;
+            right: 10px;
+            left: 10px;
+            font-size: 0.75rem;
+            padding: 6px 12px;
+            text-align: center;
+        }
+        
+        .watermark-icon {
+            margin-right: 3px;
+        }
+        
+        /* Sidebar adjustments */
+        .stSidebar {
+            width: 100% !important;
+        }
+        
+        /* Button styling */
+        .stButton>button {
+            padding: 0.5rem;
+            font-size: 0.9rem;
+        }
+    }
+    
+    /* Extra small devices (phones in portrait, less than 576px) */
+    @media only screen and (max-width: 576px) {
+        .main-header {
+            font-size: 1.75rem;
+        }
+        
+        .sub-header {
+            font-size: 0.9rem;
+        }
+        
+        .message-bubble {
+            max-width: 90%;
+            padding: 0.75rem 0.9rem;
+            font-size: 0.9rem;
+        }
+        
+        .message-bubble.welcome {
+            max-width: 98%;
+            padding: 1rem;
+        }
+        
+        .avatar {
+            width: 28px;
+            height: 28px;
+            font-size: 1rem;
+        }
+        
+        .watermark {
+            font-size: 0.7rem;
+            padding: 5px 10px;
+        }
+    }
+    
+    /* Landscape mode on mobile */
+    @media only screen and (max-width: 896px) and (orientation: landscape) {
+        .main-header {
+            font-size: 1.5rem;
+            margin-bottom: 0.3rem;
+        }
+        
+        .sub-header {
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .message-bubble {
+            padding: 0.6rem 0.8rem;
+        }
+    }
+    
+    /* Touch-friendly improvements */
+    @media (hover: none) and (pointer: coarse) {
+        .stButton>button {
+            min-height: 44px;
+            font-size: 1rem;
+        }
+        
+        .watermark a {
+            padding: 8px;
+            display: inline-block;
+        }
     }
 </style>
 """, unsafe_allow_html=True)
