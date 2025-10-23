@@ -193,6 +193,44 @@ st.markdown("""
     ::-webkit-scrollbar-thumb:hover {
         background: #764ba2;
     }
+    
+    /* Watermark Footer */
+    .watermark {
+        position: fixed;
+        bottom: 10px;
+        right: 20px;
+        font-size: 0.85rem;
+        color: #6c757d;
+        z-index: 1000;
+        padding: 8px 16px;
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 20px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(10px);
+    }
+    
+    .watermark a {
+        color: #667eea;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+    
+    .watermark a:hover {
+        color: #764ba2;
+        text-decoration: none;
+    }
+    
+    .watermark-icon {
+        display: inline-block;
+        margin-right: 5px;
+        animation: float 3s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-5px); }
+    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -395,6 +433,14 @@ def main():
     with chat_container:
         # Display chat history
         display_chat_history()
+    
+    # Developer Watermark
+    st.markdown("""
+        <div class="watermark">
+            <span class="watermark-icon">👨‍💻</span>
+            Developed by <a href="https://ashmilgit15.github.io/portfolio/" target="_blank">ashmilgit15</a>
+        </div>
+    """, unsafe_allow_html=True)
     
     # Chat input at the bottom
     st.divider()
